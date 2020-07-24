@@ -41,7 +41,18 @@ class CmorphMergedRainfall:
         return -999.
 
     def _pyread(self, pathfile, buf):
-        """读取文件内容到流"""
+        """读取文件内容到流
+
+        Parameters
+        ----------
+        pathfile (str): 二进制文件名
+        buf (array, buffer): 存入文件流的内存区
+
+        Notes
+        -------
+        Q: 为什么不直接用 np.fromfile ?
+        A: Python3中的np.fromfile效率较低，速度远不如python自带的readinto
+        """
         with open(pathfile, 'rb') as f:
             f.readinto(buf)
 
